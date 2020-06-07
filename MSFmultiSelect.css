@@ -1,4 +1,4 @@
-.msf_multiselect {
+.msf_multiselect_container .msf_multiselect {
   border: 1px solid #e4e4e4;
   list-style-type:none;
   margin: 0;
@@ -23,4 +23,6 @@
 .msf_multiselect_container .msf_multiselect{
   height: 200px;
   overflow: auto;
+  background-color: white;
+  display: grid;
 }
