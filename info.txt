@@ -28,5 +28,5 @@ reload() reload multi select
 
 ----------------------------info---------------------------------------------
 
-MSFmultiSelect (multiSelect) is pure JavaScript user firendly multi select plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
+MSFmultiSelect (multiSelect) is pure JavaScript user friendly multi select plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
 
