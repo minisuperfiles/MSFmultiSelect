@@ -1,0 +1,32 @@
+-----------------------------Parameter-------------------------------------
+select Element:
+document.querySelector('#muliselect') 
+settings:
+{
+	width:350,
+	height:30,
+	className:'myclass',
+	onChange:function(checked,value,instance){
+		console.log(checked,value,instance);
+	},
+	selectAll:true,
+	appendTo:'#myselect', //selector text
+	readOnly:true
+}
+
+--------------------------methods-------------------------------------------
+
+setValue([1,2]) //set selected values
+removeValue([1,2]) //unselect selected values
+selectAll(true) //select all or unselect all
+getData() //retrun array selected value
+loadSource(Array) //load data of select
+	formets:
+		[{caption:'displaytest',value:'value',selected:true}]
+getSource() //retrun array like [{caption:'displaytest',value:'value',selected:true}]
+reload() reload multi select
+
+----------------------------info---------------------------------------------
+
+MSFmultiSelect (multiSelect) is pure JavaScript user firendly multi select plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
+

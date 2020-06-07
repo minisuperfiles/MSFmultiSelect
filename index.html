@@ -1,0 +1,39 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Multiselect</title>
+<script src="MSFmultiSelect.js"></script>
+<link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/> 	
+
+</head>
+<body>
+<div id="myselect">
+  <select id="muliselect" style="width: 350px;" class="form-control"  name="category[]" multiple="multiple">
+    <option value="1" selected>Iceland</option>
+    <option value="2">Indonesia</option>
+    <option value="3" selected>India</option>
+    <option value="4">Iran</option>
+    <option value="5">Iraq</option>
+    <option value="6">Ireland</option>
+    <option value="7">Isle of Man</option>
+    <option value="8">Israel</option>					
+  </select>
+</div>
+</body>
+<script>
+var select=new MSFmultiSelect(
+  document.querySelector('#muliselect'),
+  {
+    onChange:function(checked,value,instance){
+      console.log(checked,value,instance);
+    },
+    selectAll:true,
+    appendTo:'#myselect',
+    //readOnly:true
+  }
+);
+</script>
+</html> 
+		
+

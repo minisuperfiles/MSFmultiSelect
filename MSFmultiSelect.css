@@ -1,0 +1,26 @@
+.msf_multiselect {
+  border: 1px solid #e4e4e4;
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 240;
+}
+.msf_multiselect li:hover, .sb_multiselect li:active, .sb_multiselect li:focus{
+  background-color: #e5e5e5;
+}
+.msf_multiselect li.active{
+  background-color: #e5e5e5;
+}
+.msf_multiselect li{
+  padding-left: 2px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.msf_multiselect_container textarea{
+  resize: none;
+}
+.msf_multiselect_container .msf_multiselect{
+  height: 200px;
+  overflow: auto;
+}
