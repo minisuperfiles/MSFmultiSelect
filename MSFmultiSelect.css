@@ -21,6 +21,7 @@
   resize: none;
   padding-left: 2px;
   padding-top: 2px;
+  overflow: auto;
 }
 .msf_multiselect_container .msf_multiselect{
   height: 200px;
