@@ -1,3 +1,8 @@
+/* MSFmultiSelect v1.00
+ * Developed by Jagadeesan S
+ * jagadeesanjd11@gamil.coms
+ * https://minisuperfiles.blogspot.com
+ */
 class MSFmultiSelect{
   constructor(select, settings={}) {
     this.select = select;
