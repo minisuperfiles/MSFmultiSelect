@@ -19,6 +19,8 @@
 }
 .msf_multiselect_container textarea{
   resize: none;
+  padding-left: 2px;
+  padding-top: 2px;
 }
 .msf_multiselect_container .msf_multiselect{
   height: 200px;
