@@ -17,7 +17,6 @@ MSFmultiSelect (multiselect) is pure JavaScript user friendly multiselect plugin
     &lt;option value='8'&gt;Israel&lt;/option&gt;
   &lt;/select&gt;
 &lt;/div&gt;
-
 &lt;script&gt;
 var select = new MSFmultiSelect(
  document.querySelector('#muliselect'),
