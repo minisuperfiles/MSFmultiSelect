@@ -76,6 +76,6 @@ settings = {
 <dd>This methods use to get current source data, it will return array format.<ul>
 <li><b>code</b> : <code> console.log(select.getSource());</code></li></ul></dd><dt><code>MSFmultiSelect.reload()</code></dt><dd>This use to recreate the mulitselect.<ul>
 <li><b>code</b> : <code>select.reload();</code></li></ul></dd></dl>
-<!--<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect" >Full Documentation (Demo)</a>-->
-Documentation (Demo)
-[Learn more](//minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect) about how it works.
+<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect" >Full Documentation (Demo)</a>
+
+<p>Learn more about in <a target="_blank" href="https://minisuperfiles.blogspot.com" >minisuperfiles.blogspot.com</a></p>
