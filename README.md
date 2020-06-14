@@ -1,7 +1,7 @@
 # MSFmultiSelect
 MSFmultiSelect (multiselect) is pure JavaScript user friendly multiselect plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
 
-<pre><code>
+<pre>
 <script src="MSFmultiSelect.js"></script>
 <link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
 <div id='myselect'>
@@ -16,4 +16,4 @@ MSFmultiSelect (multiselect) is pure JavaScript user friendly multiselect plugin
 <option value='8'>Israel</option>
 </select>
 </div>
-</code></pre>
+</pre>
