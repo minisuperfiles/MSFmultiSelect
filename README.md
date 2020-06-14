@@ -2,18 +2,20 @@
 MSFmultiSelect (multiselect) is pure JavaScript user friendly multiselect plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
 
 <pre>
-<script src="MSFmultiSelect.js"></script>
-<link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
-<div id='myselect'>
-<select id='muliselect' name='countries[]' multiple='multiple'>
-<option value='1' selected='selected'>Iceland</option>
-<option value='2' selected='selected'>Indonesia</option>
-<option value='3' selected='selected'>India</option>
-<option value='4'>Iran</option>
-<option value='5'>Iraq</option>
-<option value='6'>Ireland</option>
-<option value='7'>Isle of Man</option>
-<option value='8'>Israel</option>
-</select>
-</div>
+&lt;pre&gt;
+&lt;script src="MSFmultiSelect.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/&gt;
+&lt;div id='myselect'&gt;
+&lt;select id='muliselect' name='countries[]' multiple='multiple'&gt;
+&lt;option value='1' selected='selected'&gt;Iceland&lt;/option&gt;
+&lt;option value='2' selected='selected'&gt;Indonesia&lt;/option&gt;
+&lt;option value='3' selected='selected'&gt;India&lt;/option&gt;
+&lt;option value='4'&gt;Iran&lt;/option&gt;
+&lt;option value='5'&gt;Iraq&lt;/option&gt;
+&lt;option value='6'&gt;Ireland&lt;/option&gt;
+&lt;option value='7'&gt;Isle of Man&lt;/option&gt;
+&lt;option value='8'&gt;Israel&lt;/option&gt;
+&lt;/select&gt;
+&lt;/div&gt;
+&lt;/pre&gt;
 </pre>
