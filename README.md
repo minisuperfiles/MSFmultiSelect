@@ -31,3 +31,25 @@ var select = new MSFmultiSelect(
 &lt;/script&gt;
 </code>
 </pre>
+
+<h5>Syntax (arguments)</h5>
+
+<pre>
+<code>
+new MSFmultiSelect(element)
+new MSFmultiSelect(element,settings)
+
+element = document.getElementById('muliselect')
+settings = { 
+ width:350,
+ height:40,
+ className:'myclass',
+ onChange:function(checked,value,instance){
+  console.log(checked,value,instance);
+ },
+ selectAll:true,
+ appendTo:'#myselect',
+ readOnly:true
+}
+</code>
+</pre>
