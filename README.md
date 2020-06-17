@@ -1,5 +1,5 @@
 # MSFmultiSelect
-MSFmultiSelect (multiselect) is pure JavaScript user friendly multiselect plugin, don't need jQuery. It's very easy to use for developer and fast. (web development tool)
+MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect plugin, don't need jQuery. It's very easy to use for developers and fast. (web development tool). 
 <h5>Example Code</h5>
 <pre>
 <code>
