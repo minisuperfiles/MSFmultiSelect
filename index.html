@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="myselect">
-  <select id="muliselect" style="width: 350px;" class="form-control"  name="countries[]" multiple="multiple">
+  <select id="multiselect" style="width: 350px;" class="form-control"  name="countries[]" multiple="multiple">
     <option value="1" selected>Iceland</option>
     <option value="2">Indonesia</option>
     <option value="3" selected>India</option>
@@ -23,7 +23,7 @@
 </body>
 <script>
 var select=new MSFmultiSelect(
-  document.querySelector('#muliselect'),
+  document.querySelector('#multiselect'),
   {
     onChange:function(checked,value,instance){
       console.log(checked,value,instance);
