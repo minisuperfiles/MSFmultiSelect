@@ -54,7 +54,7 @@ settings = {
 </code>
 </pre>
 <h5>element</h5>Give DOM select element, this element posted in your backend. 
-<h5>settings (Optional)</h5>Give the object of settings your mulitiselect.
+<h5>settings (Optional)</h5>Give the object of settings your multiselect.
 <ol type="1"><li><b>appendTo</b> : give element selector string, it uses to target place to create multiselect.</li>
 <li><b>width</b> : It is control of the mulitiselect width.</li>
   <li><b>height</b> :  It is control of the mulitiselect height.</li>
