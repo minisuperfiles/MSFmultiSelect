@@ -149,7 +149,7 @@ class MSFmultiSelect{
     this.logger.value=display;
   }
   getData(){
-    var data="";
+    var data=[];
     for(var i=0; i<this.select.children.length; i++){
       if(this.select.children[i].selected){
         data.push(this.select.children[i].value);
