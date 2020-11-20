@@ -24,7 +24,7 @@
   overflow: auto;
 }
 .msf_multiselect_container .msf_multiselect{
-  height: 200px;
+  max-height: 200px;
   overflow: auto;
   background-color: white;
   display: grid;
@@ -33,4 +33,21 @@
 .msf_multiselect label{
   display: block;
   margin-bottom: 1px;
+}
+/* v2 css here */
+.selectedLabels {
+  padding: 1px 10px 1px 8px;
+  background: burlywood;
+  border: 2px solid burlywood;
+  border-radius: 25px;
+  display: inline-block;
+}
+.closeBtn {
+  padding-left: 5px;
+  border-radius: 50%;
+  border: 1px solid darkgoldenrod;
+  cursor: pointer;
+}
+.hidden {
+  display: none !important;
 }
