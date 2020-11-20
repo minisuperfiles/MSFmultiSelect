@@ -51,3 +51,6 @@
 .hidden {
   display: none !important;
 }
+.searchbox {
+  display: block;
+}
