@@ -19,7 +19,6 @@ class MSFmultiSelect{
 
     this.create();
     this.log();
-    return this;
   }
   _getSettings(settings) {
     var defultSettings = {
@@ -30,14 +29,18 @@ class MSFmultiSelect{
       className: ''
     };
 
-    Object.keys(defultSettings).forEach(function(attr) {
-      if (attr && settings[attr] !== undefined) return;
+    var defultSettingsKeys = Object.keys(defultSettings);
+    var attr, defultSettingsKeyslen = defultSettingsKeys.length;
+    for (var i = 0; i < defultSettingsKeyslen; i++) {
+      attr = defultSettingsKeys[i];
+
+      if (attr && settings[attr] !== undefined) continue;
       settings[attr] = defultSettings[attr];
-    });
+    }
 
     return settings;
   }
-  create(){
+  create() {
     var self = this;
     var addTarget = document.querySelector(this.settings.appendTo);
     var div=document.createElement('DIV');
@@ -63,84 +66,107 @@ class MSFmultiSelect{
     });
 
     this.searchBox.addEventListener('keyup', function(event) {
-      var searchVal = event.originalTarget.value.toLocaleLowerCase();
+      var searchVal = event.target.value.toLocaleLowerCase();
       var options = document.querySelectorAll('.msf_multiselect label li');
 
       self._showAllOptions();
       if (searchVal.length < 1) return;
 
-      var optinVal;
-      options.forEach(function(option) {
+      var optinVal, option, optionsLen = options.length;
+      for (var i = 0; i < optionsLen; i++) {
+        option = options[i];
         optinVal = option.innerText.toLocaleLowerCase();
 
-        if (optinVal === '<select all>') return;
+        if (optinVal === '<select all>') continue;
         if (optinVal.indexOf(searchVal) !== 0) {
           option.parentElement.classList.add('hidden');
         }
-      });
+      }
+
     });
   }
-  setValue(selected=[]){
-    if(selected.length){
-      for(var i=0; i<this.select.children.length; i++){
-        for(var j=0; j<selected.length; j++){
-          if(this.select.children[i].value==selected[j]){
-            this.select.children[i].selected=true;
-            var sync=(this.settings.selectAll) ? (i+1) : i;
-            this.list.children[sync].children[0].children[0].checked=true;
-            this.list.children[sync].children[0].className='active'; //need to change;
-            this.data[i] = 1;
-            break;
-          }
-        }
-      }
-      this.log();
+  setValue(selected = []) {
+    if (!selected.length) return;
 
-      this.searchBox.value = '';
-      this.searchBox.focus();
-      this._showAllOptions();
-    }
-  }
-  removeValue(selected=[]){
-    if(selected.length){
-      for(var i=0; i<this.select.children.length; i++){
-        for(var j=0; j<selected.length; j++){
-          if(this.select.children[i].value==selected[j]){
-            this.select.children[i].selected=false;
-            var sync=(this.settings.selectAll) ? (i+1) : i;
-            this.list.children[sync].children[0].children[0].checked=false;
-            this.list.children[sync].children[0].className=''; //need to change;
-            this.data[i] = 0;
-            break;
-          }
-        }
+    var selectChildrenLen = this.select.children.length,
+    selectedLen = selected.length,
+    selectChild, listChild, selectedIndex, sync;
+    var i, j;
+
+    for (i = 0; i < selectChildrenLen; i++) {
+      for (j = 0; j < selected.length; j++) {
+        selectChild = this.select.children[i];
+        selectedIndex = selected[j];
+
+        // TODO: need to change != to !==.
+        if (selectChild.value != selectedIndex) continue;
+
+        selectChild.selected = true;
+        sync = this.settings.selectAll ? (i + 1) : i;
+        listChild = this.list.children[sync];
+        listChild.children[0].children[0].checked = true;
+        // TODO: need to change.
+        listChild.children[0].className = 'active';
+        this.data[i] = 1;
+        break;
       }
-      this.log();
     }
+    this.log();
+
+    this.searchBox.value = '';
+    this.searchBox.focus();
+    this._showAllOptions();
+  }
+  removeValue(selected = []) {
+    if (!selected.length) return;
+
+    var selectChildrenLen = this.select.children.length,
+    selectedLen = selected.length,
+    selectChild, listChild, selectedIndex, sync;
+    var i, j;
+
+    for (i = 0; i < selectChildrenLen; i++) {
+      for (j = 0; j < selectedLen; j++) {
+        selectChild = this.select.children[i];
+        selectedIndex = selected[j];
+        if (selectChild.value != selectedIndex) continue;
+
+        selectChild.selected=false;
+        sync = this.settings.selectAll ? (i + 1) : i;
+        listChild = this.list.children[sync];
+        listChild.children[0].children[0].checked = false;
+        // TODO: need to change.
+        listChild.children[0].className = '';
+        this.data[i] = 0;
+        break;
+      }
+    }
+    this.log();
   }
   log() {
     this.settings['theme'] === 'simple' ?
       this._ThemeOneSpecific_log() : this._ThemeTwoSpecific_log();
   }
-  getData(){
-    var data=[];
-    for(var i=0; i<this.select.children.length; i++){
-      if(this.select.children[i].selected){
-        data.push(this.select.children[i].value);
-      }
-    }
-    return data;
-  }
-  selectAll(is=false){
-    var data=[];
-    for(var i=0; i<this.select.children.length; i++){
+  getData() {
+    var data = [];
+    var i, selectChildrenLen = this.select.children.length;
+
+    for (i = 0; i < selectChildrenLen; i++) {
+      if (!this.select.children[i].selected) continue;
       data.push(this.select.children[i].value);
     }
-    if(is){
-      this.setValue(data);
-    }else{
-      this.removeValue(data);
+
+    return data;
+  }
+  selectAll(is = false) {
+    var data = [];
+
+    var i, selectChildrenLen = this.select.children.length;
+    for (i = 0; i < selectChildrenLen; i++) {
+      data.push(this.select.children[i].value);
     }
+
+    is ? this.setValue(data) : this.removeValue(data);
   }
   loadSource(data=[]){
     if(data.length!=0){
@@ -170,9 +196,11 @@ class MSFmultiSelect{
     if (this.list.classList.contains('hidden')) this.list.remove('hidden');
     var options = document.querySelectorAll('.msf_multiselect label li');
 
-    options.forEach(function(option) {
-      option.parentElement.classList.remove('hidden');
-    });
+    var i, optionsLen = options.length;
+    for (i = 0; i < optionsLen; i++) {
+      options[i].parentElement.classList.remove('hidden');
+    }
+
   }
   _getCommonElems(wrapper) {
     var self = this;
@@ -189,53 +217,51 @@ class MSFmultiSelect{
     ul.style.width = this.settings.width;
     ul.classList.add('hidden');
 
-    if(this.settings.selectAll){
-      var label=document.createElement('label');
-      var li=document.createElement('LI');
-      var input=document.createElement('input');
-      input.type='checkbox';
-      input.disabled=(this.settings.readOnly) ? true: false;
-      input.addEventListener('click',function(){
-        this.parentElement.className=(this.checked) ? 'active' : '';
+    if (this.settings.selectAll) {
+      var label = document.createElement('label');
+      var li = document.createElement('LI');
+      var input = document.createElement('input');
+      input.type = 'checkbox';
+      input.disabled = this.settings.readOnly ? true : false;
+      input.addEventListener('click', function() {
+        this.parentElement.className = this.checked ? 'active' : '';
         self.selectAll(this.checked);
       });
-      var caption=document.createTextNode('<Select all>');
+
+      var caption = document.createTextNode('<Select all>');
       li.appendChild(input);
       li.appendChild(caption);
       label.appendChild(li);
       ul.appendChild(label);
     }
 
-    for(var i=0,len=this.select.children.length; i<len; i++){
-      var label=document.createElement('label');
-      var li=document.createElement('LI');
-      var input=document.createElement('input');
-      input.type='checkbox';
-      input.disabled=(this.settings.readOnly) ? true: false;
-      input.value=this.select.children[i].value;
+    var i, selectChild, selectChildrenLen = this.select.children.length;
+    var label, li, input, caption;
 
-      var caption=document.createTextNode(this.select.children[i].innerText);
-      input.addEventListener('click',function(){
-        if(this.checked){
-          self.setValue([this.value]);
-        }else{
-          self.removeValue([this.value]);
-        }
-        if(typeof self.settings.onChange=='function'){
-          self.settings.onChange(this.checked,this.value,self);
+    for(i = 0; i < selectChildrenLen; i++) {
+      selectChild = this.select.children[i];
+      label = document.createElement('label');
+      li = document.createElement('LI');
+      input = document.createElement('input');
+      input.type = 'checkbox';
+      input.disabled = this.settings.readOnly ? true : false;
+      input.value = selectChild.value;
+
+      caption = document.createTextNode(selectChild.innerText);
+      input.addEventListener('click', function() {
+        this.checked ? self.setValue([this.value]) : self.removeValue([this.value]);
+
+        if(typeof self.settings.onChange == 'function') {
+          self.settings.onChange(this.checked, this.value, self);
         }
       });
       li.appendChild(input);
       li.appendChild(caption);
-      if(this.select.children[i].selected){
-        li.className='active';
-        input.checked=true;
-        this.data[i] = 1;
-      }else{
-        li.className='';
-        input.checked=false;
-        this.data[i] = 0;
-      }
+
+      li.className = selectChild.selected ? 'active' : '';
+      input.checked = selectChild.selected;
+      this.data[i] = selectChild.selected;
+
       label.appendChild(li);
       ul.appendChild(label);
     }
@@ -248,13 +274,13 @@ class MSFmultiSelect{
   }
   _getThemeOneSpecificElems(wrapper) {
     var self = this;
-    var textarea=document.createElement('textarea');
+    var textarea = document.createElement('textarea');
     textarea.style.height = this.settings.height;
     textarea.style.width = this.settings.width;
     textarea.className = this.settings.className;
     textarea.readOnly = true;
 
-    this.logger=textarea;
+    this.logger = textarea;
     wrapper.appendChild(textarea);
 
     this.logger.addEventListener('click', function() {
@@ -278,9 +304,7 @@ class MSFmultiSelect{
 
     for(i; i < loop_length; i++) {
       option = this.select.children[i];
-      if (!this.data[i]) {
-        continue;
-      }
+      if (!this.data[i]) continue;
 
       selectedOptions += selectedOptions ? ',' + option.innerText : option.innerText;
     }
@@ -292,25 +316,23 @@ class MSFmultiSelect{
     var selectedLabelsDiv = document.getElementsByClassName('selectedLabelsDiv')[0];
     selectedLabelsDiv.innerHTML = '';
 
-    var i = 0, option = '', selectedOptions = '';
+    var i, option = '', selectedOptions = '', selectedLabels, closeBtn;
     var loop_length = this.select.children.length;
 
-    for(i; i < loop_length; i++) {
+    for(i = 0; i < loop_length; i++) {
       option = this.select.children[i];
-      if (!this.data[i]) {
-        continue;
-      }
+      if (!this.data[i]) continue;
 
-      var selectedLabels = document.createElement('label');
+      selectedLabels = document.createElement('label');
       selectedLabels.className = 'selectedLabels';
       selectedLabels.innerHTML = option.innerText;
 
-      var closeBtn = document.createElement('span');
+      closeBtn = document.createElement('span');
       closeBtn.className = 'closeBtn';
       closeBtn.innerHTML = 'X';
       closeBtn.dataset.id = option.value;
       closeBtn.addEventListener('click', function(event) {
-        self.removeValue([event.originalTarget.dataset.id]);
+        self.removeValue([event.target.dataset.id]);
       });
 
       selectedLabels.appendChild(closeBtn);
