@@ -52,5 +52,13 @@
   display: none !important;
 }
 .searchbox {
-  display: block;
+  padding: 0;
+}
+.logger {
+  border: 1px solid;
+  display: inherit;
+  cursor: pointer;
+}
+.logger.open {
+  border-bottom: 0;
 }
