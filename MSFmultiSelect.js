@@ -1,6 +1,6 @@
 /* MSFmultiSelect v1.00
  * Developed by Jagadeesan S
- * jagadeesanjd11@gamil.coms
+ * jagadeesanjd11@gamil.com
  * https://minisuperfiles.blogspot.com
  */
 class MSFmultiSelect{
