@@ -1,17 +1,19 @@
 /* MSFmultiSelect v1.00
  * Developed by Jagadeesan S
- * jagadeesanjd11@gamil.coms
+ * jagadeesanjd11@gamil.com
+ * Refactored by Bala Vallivel
  * https://minisuperfiles.blogspot.com
  */
-class MSFmultiSelect{
+class MSFmultiSelect {
   constructor(select, settings = {}) {
     this.select = select;
-    this.select.multiple=true;
-    this.select.style.display='none';
+    this.select.multiple = true;
+    this.select.style.display = 'none';
 
     this.settings = this._getSettings(settings);
 
     this.class = {
+      logger: 'logger',
       searchBox: 'searchbox'
     };
 
@@ -30,8 +32,8 @@ class MSFmultiSelect{
     };
 
     var defultSettingsKeys = Object.keys(defultSettings);
-    var attr, defultSettingsKeyslen = defultSettingsKeys.length;
-    for (var i = 0; i < defultSettingsKeyslen; i++) {
+    var i, attr, defultSettingsKeyslen = defultSettingsKeys.length;
+    for (i = 0; i < defultSettingsKeyslen; i++) {
       attr = defultSettingsKeys[i];
 
       if (attr && settings[attr] !== undefined) continue;
@@ -43,10 +45,10 @@ class MSFmultiSelect{
   create() {
     var self = this;
     var addTarget = document.querySelector(this.settings.appendTo);
-    var div=document.createElement('DIV');
-    div.className='msf_multiselect_container';
-    this.id='msf_multiselect_'+(document.querySelectorAll('.msf_multiselect_container').length+1);
-    div.id=this.id;
+    var div = document.createElement('DIV');
+    div.className = 'msf_multiselect_container';
+    this.id = 'msf_multiselect_' + (document.querySelectorAll('.msf_multiselect_container').length + 1);
+    div.id = this.id;
 
     // Creating theme specific elements here.
     this.settings['theme'] === 'simple' ?
@@ -55,7 +57,7 @@ class MSFmultiSelect{
     // Creating common elements for both themes here.
     this._getCommonElems(div);
 
-    this.container=div;
+    this.container = div;
     addTarget.appendChild(div);
     // add event
     document.addEventListener('click', function(event) {
@@ -63,6 +65,7 @@ class MSFmultiSelect{
       if (self.container.contains(event.target) || theme2Specific) return;
       self.list.classList.add('hidden');
       self.searchBox.classList.add('hidden');
+      self.logger.classList.remove('open');
     });
 
     this.searchBox.addEventListener('keyup', function(event) {
@@ -72,8 +75,8 @@ class MSFmultiSelect{
       self._showAllOptions();
       if (searchVal.length < 1) return;
 
-      var optinVal, option, optionsLen = options.length;
-      for (var i = 0; i < optionsLen; i++) {
+      var i, optinVal, option, optionsLen = options.length;
+      for (i = 0; i < optionsLen; i++) {
         option = options[i];
         optinVal = option.innerText.toLocaleLowerCase();
 
@@ -168,7 +171,7 @@ class MSFmultiSelect{
 
     is ? this.setValue(data) : this.removeValue(data);
   }
-  loadSource(data=[]){
+  loadSource(data=[]) {
     if(data.length!=0){
       this.select.innerHTML='';
       for(var i=0; i<data.length; i++){
@@ -181,14 +184,14 @@ class MSFmultiSelect{
       this.reload();
     }
   }
-  getSource(){
+  getSource() {
     var data=[];
     for(var i=0; i<this.select.children.length; i++){
       data.push({value:this.select.children[i].value,caption:this.select.children[i].innerText,selected:this.select.children[i].selected});
     }
     return data;
   }
-  reload(){
+  reload() {
     this.container.remove();
     this.create();
   }
@@ -208,7 +211,7 @@ class MSFmultiSelect{
     var searchBox = document.createElement('input');
     searchBox.type = 'text';
     searchBox.className = this.class['searchBox'];
-    // TODO: we should set px or other styles in constructor.
+
     searchBox.style.width = this.settings.width;
     searchBox.classList.add('hidden');
 
@@ -273,30 +276,34 @@ class MSFmultiSelect{
     this.searchBox = searchBox;
   }
   _getThemeOneSpecificElems(wrapper) {
-    var self = this;
-    var textarea = document.createElement('textarea');
-    textarea.style.height = this.settings.height;
-    textarea.style.width = this.settings.width;
-    textarea.className = this.settings.className;
-    textarea.readOnly = true;
+    var logger = document.createElement('textarea');
+    this._setLogger(logger);
+    logger.readOnly = true;
 
-    this.logger = textarea;
-    wrapper.appendChild(textarea);
-
-    this.logger.addEventListener('click', function() {
-      self.list.classList.toggle('hidden');
-      self.searchBox.classList.toggle('hidden');
-      if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
-    });
+    wrapper.appendChild(logger);
   }
   _getThemeTwoSpecificElems(wrapper) {
-    // TODO: this is temporary fix. we need to implement separate element for theme2.
-    this._getThemeOneSpecificElems(wrapper);
+    var logger = document.createElement('span');
+    this._setLogger(logger);
+    logger.style.height = 'auto';
 
-    var selectedLabelsDiv = document.createElement('div');
-    selectedLabelsDiv.className = 'selectedLabelsDiv';
-    selectedLabelsDiv.style.width = this.settings.width;
-    wrapper.appendChild(selectedLabelsDiv);
+    wrapper.appendChild(logger);
+  }
+  _setLogger(elem) {
+    var self = this;
+    elem.style.width = this.settings.width;
+    elem.style.height = this.settings.height;
+    elem.style.minHeight = this.settings.height;
+    elem.className = this.class.logger;
+    this.logger = elem;
+
+    elem.addEventListener('click', function() {
+      self.list.classList.toggle('hidden');
+      self.searchBox.classList.toggle('hidden');
+      self.searchBox.classList.toggle('open');
+      if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
+      self.logger.classList.toggle('open');
+    });
   }
   _ThemeOneSpecific_log() {
     var i = 0, option = '', selectedOptions = '';
@@ -313,8 +320,8 @@ class MSFmultiSelect{
   }
   _ThemeTwoSpecific_log() {
     var self=this;
-    var selectedLabelsDiv = document.getElementsByClassName('selectedLabelsDiv')[0];
-    selectedLabelsDiv.innerHTML = '';
+    var logger = document.getElementsByClassName('logger')[0];
+    logger.innerHTML = '';
 
     var i, option = '', selectedOptions = '', selectedLabels, closeBtn;
     var loop_length = this.select.children.length;
@@ -332,11 +339,12 @@ class MSFmultiSelect{
       closeBtn.innerHTML = 'X';
       closeBtn.dataset.id = option.value;
       closeBtn.addEventListener('click', function(event) {
+        event.stopPropagation();
         self.removeValue([event.target.dataset.id]);
       });
 
       selectedLabels.appendChild(closeBtn);
-      selectedLabelsDiv.appendChild(selectedLabels);
+      logger.appendChild(selectedLabels);
 
       selectedOptions += selectedOptions ? ',' + option.innerText : option.innerText;
     }
