@@ -6,18 +6,13 @@
 class MSFmultiSelect{
   constructor(select, settings={}) {
     this.select = select;
+    this.settings = settings;
     this.defultSettings={
       width:350,
       height:30,
       appendTo:'body',
       className:''
-    };
-
-    settings['width'] = settings['width'] ? settings['width'] : this.defultSettings['width'];
-    this.settings = settings;
-    this.class = {
-      searchBox: 'searchbox',
-    };
+    }
     this.select.multiple=true;
     this.select.style.display='none';
     this.create();
@@ -27,15 +22,8 @@ class MSFmultiSelect{
     div.className='msf_multiselect_container';
     this.id='msf_multiselect_'+(document.querySelectorAll('.msf_multiselect_container').length+1);
     div.id=this.id;
-    var ul=document.createElement('UL');
+    var ul=document.createElement('UL'); 
     ul.className='msf_multiselect';
-
-    var searchBox = document.createElement('input');
-    searchBox.type = 'text';
-    searchBox.className = this.class['searchBox'];
-    // TODO: we should set px or other styles in constructor.
-    searchBox.style.width = this.settings.width + 'px';
-
     var textarea=document.createElement('textarea'); textarea.readOnly=true;
     textarea.style.height=(this.settings.height) ? this.settings.height+'px' : this.defultSettings.height+'px';
     textarea.style.width=(this.settings.width) ? this.settings.width+'px' : this.defultSettings.width+'px';
@@ -99,44 +87,24 @@ class MSFmultiSelect{
     }
     //set width
     ul.style.width=(this.settings.width) ? this.settings.width+2+'px' : this.defultSettings.width+2+'px';
-    ul.classList.add('hidden');
-    searchBox.classList.add('hidden');
-
-    div.appendChild(searchBox);
+    ul.style.display='none';
     div.appendChild(ul);
     this.list=ul;
-    this.searchBox = searchBox;
     this.container=div;
     addTarget.appendChild(div);
     // add event
-    document.addEventListener('click', function(event) {
-      if (self.container.contains(event.target)) return;
-      self.list.classList.add('hidden');
-      self.searchBox.classList.add('hidden');
+    document.addEventListener('click',function(event){
+      var isClickInside=self.container.contains(event.target);
+      if(!isClickInside){
+        self.list.style.display='none';
+      }
     });
-
-    this.logger.addEventListener('click', function() {
-      self.list.classList.toggle('hidden');
-      self.searchBox.classList.toggle('hidden');
-      if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
-    });
-
-    this.searchBox.addEventListener('keyup', function(event) {
-      var searchVal = event.originalTarget.value.toLocaleLowerCase();
-      var options = document.querySelectorAll('.msf_multiselect label li');
-
-      self._showAllOptions();
-      if (searchVal.length < 1) return;
-
-      var optinVal;
-      options.forEach(function(option) {
-        optinVal = option.innerText.toLocaleLowerCase();
-
-        if (optinVal === '<select all>') return;
-        if (optinVal.indexOf(searchVal) !== 0) {
-          option.parentElement.classList.add('hidden');
-        }
-      });
+    this.logger.addEventListener('click',function(){
+      if(self.list.style.display=='none'){
+        self.list.style.display='';
+      }else{
+        self.list.style.display='none';
+      }
     });
   }
   setValue(selected=[]){
@@ -153,9 +121,6 @@ class MSFmultiSelect{
         }
       }
       this.log();
-      this.searchBox.value = '';
-      this.searchBox.focus();
-      this._showAllOptions();
     }
   }
   removeValue(selected=[]){
@@ -227,10 +192,5 @@ class MSFmultiSelect{
     this.container.remove();
     this.create();
   }
-  _showAllOptions() {
-    var options = document.querySelectorAll('.msf_multiselect label li');
-    options.forEach(function(option) {
-      option.parentElement.classList.remove('hidden');
-    });
-  }
 }
+
