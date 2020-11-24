@@ -26,11 +26,13 @@
 var select = new MSFmultiSelect(
   document.querySelector('#multiselect'),
   {
-    selectAll:true,
-    appendTo:'#myselect',
+    theme: 'simple',
+    selectAll: true,
+    searchBox: true,
+    appendTo: '#myselect',
     //readOnly:true,
-    onChange:function(checked,value,instance){
-      // console.log(checked,value,instance);
+    onChange:function(checked, value, instance) {
+      // console.log(checked, value, instance);
     },
   }
 );

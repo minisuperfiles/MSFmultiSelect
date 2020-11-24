@@ -6,17 +6,16 @@
  */
 class MSFmultiSelect {
   constructor(select, settings = {}) {
+    document.MSFmultiSelect = this;
     this.select = select;
     this.select.multiple = true;
     this.select.style.display = 'none';
 
     this.settings = this._getSettings(settings);
-
     this.class = {
       logger: 'logger',
       searchBox: 'searchbox'
     };
-
     this.data = {};
 
     this.create();
@@ -24,7 +23,7 @@ class MSFmultiSelect {
   }
   _getSettings(settings) {
     var defultSettings = {
-      theme: 'advanced',
+      theme: 'simple',
       width: '350px',
       height: '20px',
       appendTo:'body',
@@ -64,29 +63,49 @@ class MSFmultiSelect {
       var theme2Specific = self.settings['theme'] === 'simple' ? false : event.target.className === 'closeBtn';
       if (self.container.contains(event.target) || theme2Specific) return;
       self.list.classList.add('hidden');
-      self.searchBox.classList.add('hidden');
+      self._handleSearchBox('add', 'hidden');
       self.logger.classList.remove('open');
     });
 
-    this.searchBox.addEventListener('keyup', function(event) {
-      var searchVal = event.target.value.toLocaleLowerCase();
-      var options = document.querySelectorAll('.msf_multiselect label li');
+    if (this.settings.searchBox) this.searchBox.addEventListener('keyup', this._search);
+  }
+  _search(event) {
+    var self = document.MSFmultiSelect;
+    var searchVal = event.target.value.toLocaleLowerCase();
+    var options = document.querySelectorAll('.msf_multiselect label li');
 
-      self._showAllOptions();
-      if (searchVal.length < 1) return;
+    self._showAllOptions();
+    if (searchVal.length < 1) return;
 
-      var i, optinVal, option, optionsLen = options.length;
-      for (i = 0; i < optionsLen; i++) {
-        option = options[i];
-        optinVal = option.innerText.toLocaleLowerCase();
+    var i, optinVal, option, optionsLen = options.length;
+    for (i = 0; i < optionsLen; i++) {
+      option = options[i];
+      optinVal = option.innerText.toLocaleLowerCase();
 
-        if (optinVal === '<select all>') continue;
-        if (optinVal.indexOf(searchVal) !== 0) {
-          option.parentElement.classList.add('hidden');
-        }
+      if (optinVal === '<select all>') continue;
+      if (optinVal.indexOf(searchVal) !== 0) {
+        option.parentElement.classList.add('hidden');
       }
+    }
+  }
+  _handleSearchBox(eventName, className = '') {
+    if (!this.settings.searchBox) return;
 
-    });
+    var self = document.MSFmultiSelect;
+    var classes, i, classesLen;
+
+    if (className) {
+      classes = className.split(', ');
+      classesLen = classes.length;
+      for (i = 0; i < classesLen; i++) {
+        self.searchBox.classList[eventName](classes[i]);
+      }
+    }
+
+    if (eventName === 'removeValue') {
+      self.searchBox.value = '';
+    }
+    if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
   }
   setValue(selected = []) {
     if (!selected.length) return;
@@ -116,8 +135,7 @@ class MSFmultiSelect {
     }
     this.log();
 
-    this.searchBox.value = '';
-    this.searchBox.focus();
+    this._handleSearchBox('removeValue')
     this._showAllOptions();
   }
   removeValue(selected = []) {
@@ -207,13 +225,18 @@ class MSFmultiSelect {
   }
   _getCommonElems(wrapper) {
     var self = this;
+    var searchBox;
 
-    var searchBox = document.createElement('input');
-    searchBox.type = 'text';
-    searchBox.className = this.class['searchBox'];
+    if (this.settings.searchBox) {
+      searchBox = document.createElement('input');
+      searchBox.type = 'text';
+      searchBox.className = this.class['searchBox'];
+      searchBox.style.width = this.settings.width;
+      searchBox.classList.add('hidden');
 
-    searchBox.style.width = this.settings.width;
-    searchBox.classList.add('hidden');
+      wrapper.appendChild(searchBox);
+      this.searchBox = searchBox;
+    }
 
     var ul = document.createElement('UL');
     ul.className = 'msf_multiselect';
@@ -269,11 +292,8 @@ class MSFmultiSelect {
       ul.appendChild(label);
     }
 
-    wrapper.appendChild(searchBox);
     wrapper.appendChild(ul);
-
     this.list = ul;
-    this.searchBox = searchBox;
   }
   _getThemeOneSpecificElems(wrapper) {
     var logger = document.createElement('textarea');
@@ -299,9 +319,7 @@ class MSFmultiSelect {
 
     elem.addEventListener('click', function() {
       self.list.classList.toggle('hidden');
-      self.searchBox.classList.toggle('hidden');
-      self.searchBox.classList.toggle('open');
-      if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
+      self._handleSearchBox('toggle', 'hidden, open');
       self.logger.classList.toggle('open');
     });
   }
