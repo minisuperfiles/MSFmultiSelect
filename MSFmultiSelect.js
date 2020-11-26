@@ -25,7 +25,7 @@ class MSFmultiSelect {
     var defultSettings = {
       theme: 'simple',
       width: '350px',
-      height: '20px',
+      height: '40px',
       appendTo:'body',
       className: ''
     };
@@ -354,7 +354,7 @@ class MSFmultiSelect {
 
       closeBtn = document.createElement('span');
       closeBtn.className = 'closeBtn';
-      closeBtn.innerHTML = 'X';
+      closeBtn.innerHTML = '&#10005;';
       closeBtn.dataset.id = option.value;
       closeBtn.addEventListener('click', function(event) {
         event.stopPropagation();
