@@ -11,12 +11,14 @@ class MSFmultiSelect {
     this.select.style.display = 'none';
 
     this.settings = this._getSettings(settings);
+    var prefix = 'msf_';
+
     this.class = {
-      prefix: 'msf_multiselect',
-      rootContainer: 'msf_multiselect_container',
+      prefix: prefix + 'multiselect',
+      rootContainer: prefix + 'multiselect_container',
       logger: 'logger',
       searchBox: 'searchbox',
-      list: 'msf_multiselect'
+      list: prefix + 'multiselect'
     };
     this.data = {};
 
@@ -56,7 +58,7 @@ class MSFmultiSelect {
     var addTarget = document.querySelector(this.settings.appendTo);
     var div = document.createElement('DIV');
     div.className = this.class.rootContainer;
-    div.id = this.class.prefix + (document.querySelectorAll('.msf_multiselect_container').length + 1);
+    div.id = this.class.prefix + (document.querySelectorAll('.' + this.class.rootContainer).length + 1);
 
     // Creating theme specific elements here.
     this.settings['theme'] === 'simple' ?
@@ -72,7 +74,6 @@ class MSFmultiSelect {
       var theme2Specific = self.settings['theme'] === 'simple' ? false : event.target.className === 'closeBtn';
       if (self.container.contains(event.target) || theme2Specific) return;
       self.list.classList.add('hidden');
-      self._handleSearchBox('add', 'hidden');
       self.logger.classList.remove('open');
     });
 
@@ -98,24 +99,10 @@ class MSFmultiSelect {
       }
     }
   }
-  _handleSearchBox(eventName, className = '') {
+  _handleSearchBox() {
     if (!this.settings.searchBox) return;
-
-    var self = this;
-    var classes, i, classesLen;
-
-    if (className) {
-      classes = className.split(', ');
-      classesLen = classes.length;
-      for (i = 0; i < classesLen; i++) {
-        self.searchBox.classList[eventName](classes[i]);
-      }
-    }
-
-    if (eventName === 'removeValue') {
-      self.searchBox.value = '';
-    }
-    if (!self.searchBox.classList.contains('hidden')) self.searchBox.focus();
+    if (this.searchBox.value) { this.searchBox.value = ''; }
+    this.searchBox.focus();
   }
   setValue(selected = []) {
     if (!selected.length) return;
@@ -143,13 +130,7 @@ class MSFmultiSelect {
       }
     }
     this.log();
-
-    var searchResult = this._getLi(this.list, 'label:not(.hidden) li:not(.ignore)');
-    var selectedSearchResult = this._getLi(this.list, 'label:not(.hidden) li.active:not(.ignore)');
-    if (searchResult.length === selectedSearchResult.length) {
-      this._handleSearchBox('removeValue');
-      this._showAllOptions();
-    }
+    this.searchValClear();
   }
   removeValue(selected = []) {
     if (!selected.length) return;
@@ -175,10 +156,17 @@ class MSFmultiSelect {
       }
     }
     this.log();
+    this.searchValClear();
+  }
+  searchValClear() {
+    if (!this.settings.searchBox) return;
+    var searchResult, selectedSearchResult, selectAll;
 
-    var selectedSearchResult = this._getLi(this.list, 'label:not(.hidden) li.active:not(.ignore)');
-    if (!selectedSearchResult.length) {
-      this._handleSearchBox('removeValue');
+    searchResult = this._getLi(this.list, 'label:not(.hidden) li:not(.ignore)');
+    selectedSearchResult = this._getLi(this.list, 'label:not(.hidden) li.active:not(.ignore)');
+
+    if (searchResult.length === selectedSearchResult.length || !selectedSearchResult.length) {
+      this._handleSearchBox();
       this._showAllOptions();
     }
   }
@@ -242,7 +230,7 @@ class MSFmultiSelect {
     this.create();
   }
   _showAllOptions() {
-    if (this.list.classList.contains('hidden')) this.list.remove('hidden');
+    if (this.list.classList.contains('hidden')) { this.list.classList.remove('hidden'); }
     var options = this._getSearchableLi(this.list);
 
     var i, optionsLen = options.length;
@@ -268,9 +256,8 @@ class MSFmultiSelect {
 
       searchBox = document.createElement('input');
       searchBox.type = 'text';
+      searchBox.placeholder = 'Search';
       searchBox.className = this.class['searchBox'];
-      searchBox.style.width = this.settings.width;
-      searchBox.classList.add('hidden');
 
       li.appendChild(searchBox);
       label.appendChild(li);
@@ -345,7 +332,6 @@ class MSFmultiSelect {
   _getThemeTwoSpecificElems(wrapper) {
     var logger = document.createElement('span');
     this._setLogger(logger);
-    logger.style.height = 'auto';
 
     wrapper.appendChild(logger);
   }
@@ -353,14 +339,13 @@ class MSFmultiSelect {
     var self = this;
     elem.style.width = this.settings.width;
     elem.style.height = this.settings.height;
-    elem.style.minHeight = this.settings.height;
     elem.className = this.class.logger;
     this.logger = elem;
 
     elem.addEventListener('click', function() {
       self.list.classList.toggle('hidden');
-      self._handleSearchBox('toggle', 'hidden, open');
       self.logger.classList.toggle('open');
+      self._handleSearchBox();
     });
   }
   _ThemeOneSpecific_log() {
@@ -377,8 +362,8 @@ class MSFmultiSelect {
     this.logger.value = selectedOptions;
   }
   _ThemeTwoSpecific_log() {
-    var self=this;
-    var logger = document.getElementsByClassName('logger')[0];
+    var self = this;
+    var logger = self.logger;
     logger.innerHTML = '';
 
     var i, option = '', selectedOptions = '', selectedLabels, closeBtn;
