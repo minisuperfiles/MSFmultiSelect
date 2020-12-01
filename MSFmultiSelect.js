@@ -90,13 +90,23 @@ class MSFmultiSelect {
     if (searchVal.length < 1) return;
 
     var i, optinVal, option, optionsLen = options.length;
+    var allSelected = true;
     for (i = 0; i < optionsLen; i++) {
       option = options[i];
       optinVal = option.innerText.toLocaleLowerCase();
 
       if (optinVal.indexOf(searchVal) !== 0) {
         option.parentElement.classList.add('hidden');
+        continue;
       }
+      allSelected &&= option.firstChild.checked;
+    }
+    self.uncheckSelectAllBtn(allSelected);
+  }
+  uncheckSelectAllBtn(allSelected) {
+    if (!this.settings.searchBox) { return; }
+    if (!allSelected) {
+      this.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
     }
   }
   _handleSearchBox() {
@@ -165,7 +175,7 @@ class MSFmultiSelect {
     searchResult = this._getLi(this.list, 'label:not(.hidden) li:not(.ignore)');
     selectedSearchResult = this._getLi(this.list, 'label:not(.hidden) li.active:not(.ignore)');
 
-    if (searchResult.length === selectedSearchResult.length || !selectedSearchResult.length) {
+    if (!selectedSearchResult.length) {
       this._handleSearchBox();
       this._showAllOptions();
     }
@@ -187,10 +197,12 @@ class MSFmultiSelect {
   }
   selectAll(isSetValue = false) {
     var data = [];
-    var i, selectChildrenLen = this.select.children.length;
+    var i, selectedChildren, selectChildrenLen;
+    selectedChildren = this.list.querySelectorAll('label:not(.hidden) li:not(.ignore) input');
+    selectChildrenLen = selectedChildren.length;
 
     for (i = 0; i < selectChildrenLen; i++) {
-      data.push(this.select.children[i].value);
+      data.push(selectedChildren[i].value);
     }
 
     isSetValue ? this.setValue(data) : this.removeValue(data);
