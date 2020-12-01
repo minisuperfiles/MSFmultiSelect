@@ -101,8 +101,12 @@ class MSFmultiSelect {
       }
       allSelected &&= option.firstChild.checked;
     }
+    self.uncheckSelectAllBtn(allSelected);
+  }
+  uncheckSelectAllBtn(allSelected) {
+    if (!this.settings.searchBox) { return; }
     if (!allSelected) {
-      self.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
+      this.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
     }
   }
   _handleSearchBox() {
