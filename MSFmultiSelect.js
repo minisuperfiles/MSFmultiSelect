@@ -1,8 +1,9 @@
-/* MSFmultiSelect v1.00
- * Developed by Jagadeesan S
- * jagadeesanjd11@gamil.com
- * Refactored by Bala Vallivel
+/* MSFmultiSelect v2.0
+ * Developed by Jagadeesan S and Bala Vallivel
+ * minisuperfiles@gmail.com
  * https://minisuperfiles.blogspot.com
+ * https://github.com/minisuperfiles/MSFmultiSelect
+ * https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect
  */
 class MSFmultiSelect {
   constructor(select, settings = {}) {
@@ -30,7 +31,7 @@ class MSFmultiSelect {
       theme: 'theme1',
       width: '350px',
       height: '40px',
-      appendTo:'body',
+      appendTo: '__auto__',
       className: ''
     };
 
@@ -45,7 +46,6 @@ class MSFmultiSelect {
 
     settings['width'] = this._setpixel(settings['width']);
     settings['height'] = this._setpixel(settings['height']);
-
     return settings;
   }
   _setpixel(value) {
@@ -53,9 +53,18 @@ class MSFmultiSelect {
     // Here value has string return the value, otherwise px will be added.
     return isNaN(value) ? value : value + 'px';
   }
+  _getTarget(appendTo) {
+    var target;
+    if (appendTo == '__auto__' && this.select.parentElement) {
+        target = this.select.parentElement;
+    } else {
+      target = document.querySelector(this.settings.appendTo);
+    }
+    return target;
+  }
   create() {
     var self = this;
-    var addTarget = document.querySelector(this.settings.appendTo);
+    var addTarget = this._getTarget(this.settings.appendTo);
     var div = document.createElement('DIV');
     div.className = this.class.rootContainer;
     div.id = this.class.prefix + (document.querySelectorAll('.' + this.class.rootContainer).length + 1);
@@ -99,15 +108,15 @@ class MSFmultiSelect {
         option.parentElement.classList.add('hidden');
         continue;
       }
-      allSelected &&= option.firstChild.checked;
+      if (allSelected) {
+        allSelected = option.firstChild.checked;
+      }
     }
-    self.uncheckSelectAllBtn(allSelected);
+    self.toggleSelectAllBtn(allSelected);
   }
-  uncheckSelectAllBtn(allSelected) {
+  toggleSelectAllBtn(allSelected) {
     if (!this.settings.searchBox) { return; }
-    if (!allSelected) {
-      this.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
-    }
+    this.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
   }
   _handleSearchBox() {
     if (!this.settings.searchBox) return;

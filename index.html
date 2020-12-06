@@ -1,42 +1,73 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Multiselect</title>
+<title>Multiselect | MSFmultiSelect | Minisuperfiles</title>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <script src="MSFmultiSelect.js"></script>
 <link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
-
 </head>
 <body>
+<h1>Multi Select</h1>
+<h4>Theme 1</h4>
 <div id="myselect">
-  <select id="multiselect" style="width: 350px;" class="form-control"  name="countries[]" multiple="multiple">
-    <option value="1" selected>Iceland</option>
-    <option value="2">DIndonesia</option>
-    <option value="3" selected>India</option>
-    <option value="4">eIran</option>
-    <option value="5">Iraq</option>
-    <option value="6">EIreland</option>
-    <option value="7">Isle of Man</option>
-    <option value="8">Israel</option>
+  <select id="multiselect" style="width: 350px;" class="form-control"  name="others[]" multiple="multiple">
+    <option value="1" selected>HTML</option>
+    <option value="2" selected>CSS</option>
+    <option value="3">MySql</option>
+    <option value="4">XML</option>
+    <option value="5">JSON</option>
+    <option value="6">YAML</option>
+    <option value="7">MongoDB</option>
+    <option value="8">SQLite</option>
   </select>
 </div>
+<div>
+<h4>Theme 2</h4>
+<div id="myselect2">
+  <select id="multiselect2" name="languages[]" multiple="" >
+    <option value="c">C</option><option value="cpp" selected="">C++</option>
+    <option value="java" selected="">Java</option>
+    <option value="php" selected="">PHP</option>
+    <option value="python">Python</option>
+    <option value="javascript" selected="">JavaScript</option>
+    <option value="typescript">TypeScript</option>
+    <option value="csharp">C#</option>
+  </select>
+</div>
+<h4>Link</h4>
+<a target="_blank" href="https://minisuperfiles.blogspot.com">Get more</a>
+<a target="_blank" href="https://github.com/minisuperfiles/MSFmultiSelect">GitHub</a>
+<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect">Documentation</a>
 </body>
 <script>
 var select = new MSFmultiSelect(
   document.querySelector('#multiselect'),
   {
-    // theme: 'theme1',
-    theme: 'theme2',
+    theme: 'theme1',
     selectAll: true,
     searchBox: true,
-    appendTo: '#myselect',
     width: 250,
-    // height: '30px',
-    //readOnly:true,
+    height: 30,
     onChange:function(checked, value, instance) {
       // console.log(checked, value, instance);
     },
+    //appendTo: '#myselect',
+    //readOnly:true,
+  }
+);
+var select2 = new MSFmultiSelect(
+  document.querySelector('#multiselect2'),
+  {
+    theme: 'theme2',
+    selectAll: true,
+    searchBox: true,
+    width: '250px',
+    height: '45px',
+    onChange:function(checked, value, instance) {
+      // console.log(checked, value, instance);
+    },
+    //appendTo: '#myselect2',
+    //readOnly:true,
   }
 );
 </script>
