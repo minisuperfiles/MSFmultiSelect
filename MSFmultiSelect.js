@@ -27,7 +27,7 @@ class MSFmultiSelect {
   }
   _getSettings(settings) {
     var defultSettings = {
-      theme: 'simple',
+      theme: 'theme1',
       width: '350px',
       height: '40px',
       appendTo:'body',
@@ -61,7 +61,7 @@ class MSFmultiSelect {
     div.id = this.class.prefix + (document.querySelectorAll('.' + this.class.rootContainer).length + 1);
 
     // Creating theme specific elements here.
-    this.settings['theme'] === 'simple' ?
+    this.settings['theme'] === 'theme1' ?
       this._getThemeOneSpecificElems(div) : this._getThemeTwoSpecificElems(div);
 
     // Creating common elements for both themes here.
@@ -71,7 +71,7 @@ class MSFmultiSelect {
     addTarget.appendChild(div);
     // add event
     document.addEventListener('click', function(event) {
-      var theme2Specific = self.settings['theme'] === 'simple' ? false : event.target.className === 'closeBtn';
+      var theme2Specific = self.settings['theme'] === 'theme1' ? false : event.target.className === 'closeBtn';
       if (self.container.contains(event.target) || theme2Specific) { return; }
       self.list.classList.add('hidden');
       self.logger.classList.remove('open');
@@ -181,7 +181,7 @@ class MSFmultiSelect {
     }
   }
   log() {
-    this.settings['theme'] === 'simple' ?
+    this.settings['theme'] === 'theme1' ?
       this._ThemeOneSpecific_log() : this._ThemeTwoSpecific_log();
   }
   getData() {
@@ -368,7 +368,7 @@ class MSFmultiSelect {
       option = this.select.children[i];
       if (!this.data[i]) { continue; }
 
-      selectedOptions += selectedOptions ? ',' + option.innerText : option.innerText;
+      selectedOptions += selectedOptions ? ', ' + option.innerText : option.innerText;
     }
 
     this.logger.value = selectedOptions;
