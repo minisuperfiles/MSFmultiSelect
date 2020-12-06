@@ -72,7 +72,7 @@ class MSFmultiSelect {
     // add event
     document.addEventListener('click', function(event) {
       var theme2Specific = self.settings['theme'] === 'simple' ? false : event.target.className === 'closeBtn';
-      if (self.container.contains(event.target) || theme2Specific) return;
+      if (self.container.contains(event.target) || theme2Specific) { return; }
       self.list.classList.add('hidden');
       self.logger.classList.remove('open');
     });
@@ -189,7 +189,7 @@ class MSFmultiSelect {
     var i, selectChildrenLen = this.select.children.length;
 
     for (i = 0; i < selectChildrenLen; i++) {
-      if (!this.select.children[i].selected) continue;
+      if (!this.select.children[i].selected) { continue; }
       data.push(this.select.children[i].value);
     }
 
@@ -366,7 +366,7 @@ class MSFmultiSelect {
 
     for(i; i < loop_length; i++) {
       option = this.select.children[i];
-      if (!this.data[i]) continue;
+      if (!this.data[i]) { continue; }
 
       selectedOptions += selectedOptions ? ',' + option.innerText : option.innerText;
     }
@@ -383,7 +383,7 @@ class MSFmultiSelect {
 
     for(i = 0; i < loop_length; i++) {
       option = this.select.children[i];
-      if (!this.data[i]) continue;
+      if (!this.data[i]) { continue; }
 
       selectedLabels = document.createElement('label');
       selectedLabels.className = 'selectedLabels';
@@ -403,7 +403,6 @@ class MSFmultiSelect {
 
       selectedOptions += selectedOptions ? ',' + option.innerText : option.innerText;
     }
-    // TODO: update selectedOptions in input or select box.
-    console.log(selectedOptions);
+    this.logger.dataset.value = selectedOptions;
   }
 }
