@@ -9,7 +9,7 @@
   position: absolute;
   z-index: 240;
 }
-.msf_multiselect li:hover, .sb_multiselect li:active, .sb_multiselect li:focus{
+.msf_multiselect li:hover, .msf_multiselect li:focus{
   background-color: #e5e5e5;
 }
 .msf_multiselect li.active{
@@ -55,7 +55,8 @@
   display: none !important;
 }
 .msf_multiselect .searchbox {
-  width: 96%;
+  width: -moz-available;
+  width: -webkit-fill-available;
   padding: 0;
   margin: 0;
   height: 30px;
