@@ -1,45 +1,36 @@
 # MSFmultiSelect
 MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.
-<h5>Example Code</h5>
+## Usage Example
 ```html
 <script src="MSFmultiSelect.js"></script>
 <link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
-```
-<pre>
-<code>
-&lt;script src="MSFmultiSelect.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/&gt;
-&lt;div id='myselect'&gt;
-  &lt;select id='multiselect' name='countries[]' multiple='multiple'&gt;
-    &lt;option value='1' selected='selected'&gt;Iceland&lt;/option&gt;
-    &lt;option value='2' selected='selected'&gt;Indonesia&lt;/option&gt;
-    &lt;option value='3' selected='selected'&gt;India&lt;/option&gt;
-    &lt;option value='4'&gt;Iran&lt;/option&gt;
-    &lt;option value='5'&gt;Iraq&lt;/option&gt;
-    &lt;option value='6'&gt;Ireland&lt;/option&gt;
-    &lt;option value='7'&gt;Isle of Man&lt;/option&gt;
-    &lt;option value='8'&gt;Israel&lt;/option&gt;
-  &lt;/select&gt;
-&lt;/div&gt;
-&lt;script&gt;
-var select = new MSFmultiSelect(
- document.querySelector('#multiselect'),
- { 
-  onChange:function(checked,value,instance){
-   console.log(checked,value,instance); 
-  },
-  selectAll:true,
-  appendTo:'#myselect' 
- } 
+<div id="myselect">
+  <select id="multiselect" style="width: 350px;" class="form-control"  name="others[]" multiple="multiple">
+    <option value="1" selected>HTML</option>
+    <option value="2" selected>CSS</option>
+    <option value="3">MySql</option>
+    <option value="4">XML</option>
+    <option value="5">JSON</option>
+    <option value="6">YAML</option>
+    <option value="7">MongoDB</option>
+    <option value="8">SQLite</option>
+  </select>
+</div>
+<script>
+var select2 = new MSFmultiSelect(
+  document.querySelector('#multiselect'),
+  {
+    selectAll: true,
+    searchBox: true,
+    onChange:function(checked, value, instance) {
+      console.log(checked, value, instance);
+    }
+  }
 );
-&lt;/script&gt;
-</code>
-</pre>
-
-<h5>Syntax (arguments)</h5>
-
-<pre>
-<code>
+</script>
+```
+## Syntax (arguments)
+```
 new MSFmultiSelect(element)
 new MSFmultiSelect(element,settings)
 
@@ -52,13 +43,15 @@ settings = {
   console.log(checked,value,instance);
  },
  selectAll:true,
+ searchBox: true,
  appendTo:'#myselect',
  readOnly:true
 }
-</code>
-</pre>
-<h5>element</h5>Give DOM select element, this element posted in your backend. 
-<h5>settings (Optional)</h5>Give the object of settings your multiselect.
+```
+### element 
+Give DOM select element, this element posted in your backend. 
+### settings (Optional)
+Give the object of settings your multiselect.
 <ol type="1"><li><b>appendTo</b> : give element selector string, it uses to target place to create multiselect.</li>
 <li><b>width</b> : It is control of the mulitiselect width.</li>
   <li><b>height</b> :  It is control of the mulitiselect height.</li>
