@@ -5,7 +5,7 @@ MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect libr
 <script src="MSFmultiSelect.js"></script>
 <link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
 <div id="myselect">
-  <select id="multiselect" style="width: 350px;" class="form-control"  name="others[]" multiple="multiple">
+  <select id="multiselect" name="languages[]" multiple="multiple">
     <option value="1" selected>HTML</option>
     <option value="2" selected>CSS</option>
     <option value="3">MySql</option>
