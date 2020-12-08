@@ -2,8 +2,8 @@
 MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.
 ## Usage Example
 ```html
-<script src="MSFmultiSelect.js"></script>
-<link rel="stylesheet" type="text/css" href="MSFmultiSelect.css"/>
+<script src="msfmultiselect.js"></script>
+<link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
 <div id="myselect">
   <select id="multiselect" name="languages[]" multiple="multiple">
     <option value="1" selected>HTML</option>
@@ -35,7 +35,7 @@ new MSFmultiSelect(element)
 new MSFmultiSelect(element,settings)
 
 element = document.getElementById('multiselect')
-settings = { 
+settings = {
  width:350,
  height:40,
  className:'myclass',
@@ -48,8 +48,8 @@ settings = {
  readOnly:true
 }
 ```
-### element 
-Give DOM select element, this element posted in your backend. 
+### element
+Give DOM select element, this element posted in your backend.
 ### settings (Optional)
 Give the object of settings your multiselect.
 <ol type="1"><li><b>appendTo</b> : give element selector string, it uses to target place to create multiselect.</li>
