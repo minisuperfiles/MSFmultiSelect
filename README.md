@@ -5,7 +5,7 @@ Use npm to install the latest version.
 ```
 npm install github:minisuperfiles/MSFmultiSelect
 ```
-## CDN embed link
+Alternatively, you can simply embed it in your HTML file.
 ```html
 <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css"/>
