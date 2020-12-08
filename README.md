@@ -8,7 +8,7 @@ npm install github:minisuperfiles/MSFmultiSelect
 Alternatively, you can simply embed it in your HTML file.
 ```html
 <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css"/>
+<link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css" rel="stylesheet"/>
 ```
 ## Usage Example
 ```html
