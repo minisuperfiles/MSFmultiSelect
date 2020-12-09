@@ -49,12 +49,15 @@ var select = new MSFmultiSelect(
     width: 250,
     height: 30,
     onChange:function(checked, value, instance) {
-      // console.log(checked, value, instance);
+      //console.log(checked, value, instance);
     },
     //appendTo: '#myselect',
     //readOnly:true,
     placeholder: 'languages',
-    //autoHide: false
+    //autoHide: false,
+    afterSelectAll:function(checked, instance) {
+      //console.log(checked, instance);
+    }
   }
 );
 var select2 = new MSFmultiSelect(
