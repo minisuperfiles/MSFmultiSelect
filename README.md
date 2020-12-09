@@ -15,9 +15,9 @@ Alternatively, you can simply embed it in your HTML file.
 Add references to MSFmultiSelect’s JavaScript and Stylesheet.
 ```html
 <script src="msfmultiselect.js"></script>
-<link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
+<link rel="stylesheet" href="msfmultiselect.css"/>
 ```
-select box container element.
+Select box container element.
 ```html
 <div id="myselect">
   <select id="multiselect" name="languages[]" multiple="multiple">
