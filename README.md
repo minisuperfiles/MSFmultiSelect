@@ -11,10 +11,14 @@ Alternatively, you can simply embed it in your HTML file.
 <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css" rel="stylesheet"/>
 ```
-## Usage Example
+## Using Example
+Add references to MSFmultiSelect’s JavaScript and Stylesheet.
 ```html
 <script src="msfmultiselect.js"></script>
 <link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
+```
+select box container element.
+```html
 <div id="myselect">
   <select id="multiselect" name="languages[]" multiple="multiple">
     <option value="1" selected>HTML</option>
@@ -27,7 +31,9 @@ Alternatively, you can simply embed it in your HTML file.
     <option value="8">SQLite</option>
   </select>
 </div>
-<script>
+```
+JavaScript code
+```javascript
 var select2 = new MSFmultiSelect(
   document.querySelector('#multiselect'),
   {
@@ -38,7 +44,6 @@ var select2 = new MSFmultiSelect(
     }
   }
 );
-</script>
 ```
 ## Syntax (arguments)
 ```
