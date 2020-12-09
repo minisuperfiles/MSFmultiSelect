@@ -30,7 +30,9 @@ class MSFmultiSelect {
       width: '350px',
       height: '40px',
       appendTo: '__auto__',
-      className: ''
+      className: '',
+      placeholder: '',
+      autoHide: true
     };
 
     var defultSettingsKeys = Object.keys(defultSettings);
@@ -80,7 +82,9 @@ class MSFmultiSelect {
     document.addEventListener('click', function(event) {
       var theme2Specific = self.settings['theme'] === 'theme1' ? false : event.target.className === 'closeBtn';
       if (self.container.contains(event.target) || theme2Specific) { return; }
-      self.list.classList.add('hidden');
+      if (self.settings.autoHide) {
+       self.list.classList.add('hidden');
+      }
       self.logger.classList.remove('open');
     });
 
@@ -266,8 +270,11 @@ class MSFmultiSelect {
     ul = document.createElement('UL');
     ul.className = this.class.list;
     ul.style.width = this.settings.width;
-    ul.classList.add('hidden');
-
+    if (this.settings.autoHide) {
+      ul.classList.add('hidden');
+    } else {
+      ul.classList.add('offdropdown');
+    }
     if (this.settings.searchBox) {
       label = document.createElement('label');
       li = document.createElement('LI');
@@ -345,6 +352,7 @@ class MSFmultiSelect {
     var logger = document.createElement('textarea');
     this._setLogger(logger);
     logger.readOnly = true;
+    logger.placeholder =  this.settings.placeholder;
 
     wrapper.appendChild(logger);
   }
@@ -362,7 +370,9 @@ class MSFmultiSelect {
     this.logger = elem;
 
     elem.addEventListener('click', function() {
-      self.list.classList.toggle('hidden');
+      if (self.settings.autoHide) { 
+        self.list.classList.toggle('hidden');
+      }
       self.logger.classList.toggle('open');
       self._handleSearchBox();
     });

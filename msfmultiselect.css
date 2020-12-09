@@ -74,3 +74,6 @@
   padding: 1px;
   overflow-y: auto;
 }
+.msf_multiselect_container .msf_multiselect.offdropdown {
+  position: unset;
+} 
