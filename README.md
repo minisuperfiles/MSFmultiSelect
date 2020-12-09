@@ -70,9 +70,9 @@ Give the object of settings your multiselect.
   <li><b>onChange</b> : when it changed, this callback function, there is three-parameter in this function.<ol type="i"><li><b>checked</b> : you receive boolean data, selected item checked, or unchecked.</li>
   <li><b>value</b> : you get selected item value.</li>
   <li><b>instance</b> : it's instance variable of mulitiselect, you can access multiselect properties and methods</li></ol></li>
-  <li><b>selectAll</b> : if you give true value, select all options to enable.</li>
-  <li><b>readOnly</b> :  if you give true value, the user can not modify multiselect options.</li></ol>
-  <li><b>theme</b> : There are two themes available. They are ```javascript 'theme1' ``` and ```javascript 'theme2' ```. theme1 is a regular multi-select, theme2 multi-select have directly remove selected value option button.</li></ol>
+  <li><b>selectAll</b> : If your given value is true, then the select-all feature is will enable. It helps one click to select all options</li>
+  <li><b>searchBox</b> : If your given value is true, the search box feature is will enable. It helps to search the option values.</li>
+  <li><b>theme</b> : There are two themes available. They are theme1 and theme2. theme1 is a regular multi-select, theme2 multi-select have directly remove selected value option button.</li></ol>
 <h5>MSFmultiSelect Methods</h5><dl>
   <dt><code>MSFmultiSelect.setValue(sellectedValues)</code></dt>
 <dd>This method used to add selected values, this method needs one argument, that argument value has select option values in an array format.<ul>
@@ -100,6 +100,6 @@ Give the object of settings your multiselect.
 <dd>This method uses to get current source data, it will return the array format.<ul>
 <li><b>code</b> : <code> console.log(select.getSource());</code></li></ul></dd><dt><code>MSFmultiSelect.reload()</code></dt><dd>This use to recreate the mulitselect.<ul>
 <li><b>code</b> : <code>select.reload();</code></li></ul></dd></dl>
-<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect" >View Documentation (Demo)</a>
 
-<p>Learn more about in <a target="_blank" href="https://minisuperfiles.blogspot.com" >minisuperfiles.blogspot.com</a></p>
+
+Learn more about in [minisuperfiles.blogspot.com](https://minisuperfiles.blogspot.com)
