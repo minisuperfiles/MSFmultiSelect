@@ -219,7 +219,7 @@ class MSFmultiSelect {
     isSetValue ? this.setValue(data) : this.removeValue(data);
     //callback
     if (typeof this.settings.afterSelectAll == 'function') {
-      this.settings.afterSelectAll(isSetValue, this);
+      this.settings.afterSelectAll(isSetValue, data, this);
     }
   }
   loadSource(data=[]) {
