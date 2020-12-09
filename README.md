@@ -89,12 +89,12 @@ Give the object of settings your multiselect.
   <dt><code>MSFmultiSelect.loadSource(options)</code></dt>
   <dd>This method uses to load options in multiselect. This method needs one argument and its need array format.<ul>
 <li><b>formet</b> : 
-```javascript
-    var options=[
-        {caption:'optiontext1',value:'optionvalue1',selected:true},
-        {caption:'optiontext2',value:'optionvalue2',selected:false}
-    ];
-```
+<pre><code>
+var options = [
+    {caption:'optiontext1', value:'optionvalue1', selected:true},
+    {caption:'optiontext2', value:'optionvalue2', selected:false}
+];
+</code></pre>
 </li>
 </ul></dd><dt><code>MSFmultiSelect.getSource()</code></dt>
 <dd>This method uses to get current source data, it will return the array format.<ul>
