@@ -32,3 +32,42 @@ reload() reload multi select
 
 MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast. 
 
+/* MSFmultiSelect v2.0 | Copyright (c) 2020 Mini Super Files | https://github.com/minisuperfiles/MSFmultiSelect/blob/master/LICENSE */
+
+/* server side search plan */
+//settings.onSearch
+function(query, callback){
+data=[];
+callback(data);
+}
+
+//add search event
+settings.onSearch(key, tempSearch);
+
+tempSearch(data){
+ //add temp li
+ li click event
+ moveOption();
+}
+
+moveOption(){
+//move option with selected
+//set permament
+}
+------------
+autoremover(){
+//server side li remove
+}
+
+all value selected function (){
+autoremover()
+}
+
+searchboxempty(){
+ autoremover();
+}
+
+listcose(){
+ autoremover();
+}
+-----------------

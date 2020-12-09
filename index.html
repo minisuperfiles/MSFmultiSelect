@@ -3,8 +3,8 @@
 <head>
 <title>Multiselect | MSFmultiSelect | Minisuperfiles</title>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<script src="msfmultiselect.min.js"></script>
-<link rel="stylesheet" type="text/css" href="msfmultiselect.min.css"/>
+<script src="msfmultiselect.js"></script>
+<link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
 </head>
 <body>
 <h1>Multi Select</h1>
@@ -49,10 +49,15 @@ var select = new MSFmultiSelect(
     width: 250,
     height: 30,
     onChange:function(checked, value, instance) {
-      // console.log(checked, value, instance);
+      //console.log(checked, value, instance);
     },
     //appendTo: '#myselect',
     //readOnly:true,
+    placeholder: 'languages',
+    //autoHide: false,
+    afterSelectAll:function(checked, values, instance) {
+      //console.log(checked, values, instance);
+    }
   }
 );
 var select2 = new MSFmultiSelect(
@@ -68,6 +73,7 @@ var select2 = new MSFmultiSelect(
     },
     //appendTo: '#myselect2',
     //readOnly:true,
+    //autoHide: false
   }
 );
 </script>
