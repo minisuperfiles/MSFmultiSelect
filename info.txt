@@ -1,6 +1,6 @@
 -----------------------------Parameter-------------------------------------
 select Element:
-document.querySelector('#muliselect') 
+document.querySelector('#muliselect')
 settings:
 {
 	width:350,
@@ -30,12 +30,12 @@ reload() reload multi select
 
 ----------------------------info---------------------------------------------
 
-MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast. 
+MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.
 
 /* MSFmultiSelect v2.0 | Copyright (c) 2020 Mini Super Files | https://github.com/minisuperfiles/MSFmultiSelect/blob/master/LICENSE */
 
 /* server side search plan */
-//settings.onSearch
+//settings.onSearch -> user's cb
 function(query, callback){
 data=[];
 callback(data);
