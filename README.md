@@ -1,9 +1,24 @@
 # MSFmultiSelect
 MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.
-## Usage Example
+### [Documentation (Demo)](https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect) | [Try it (JSFiddle)](https://jsfiddle.net/minisuperfiles/r0L2yusd/) | [Download](https://github.com/minisuperfiles/MSFmultiSelect/archive/1.0.zip)
+## Installation
+Use npm to install the latest version.
+```
+npm install github:minisuperfiles/MSFmultiSelect
+```
+Alternatively, you can simply embed it in your HTML file.
+```html
+<script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css" rel="stylesheet"/>
+```
+## Using Example
+Add references to MSFmultiSelect’s JavaScript and Stylesheet.
 ```html
 <script src="msfmultiselect.js"></script>
-<link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
+<link rel="stylesheet" href="msfmultiselect.css"/>
+```
+Select box container element.
+```html
 <div id="myselect">
   <select id="multiselect" name="languages[]" multiple="multiple">
     <option value="1" selected>HTML</option>
@@ -16,7 +31,9 @@ MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect libr
     <option value="8">SQLite</option>
   </select>
 </div>
-<script>
+```
+JavaScript code
+```javascript
 var select2 = new MSFmultiSelect(
   document.querySelector('#multiselect'),
   {
@@ -27,7 +44,6 @@ var select2 = new MSFmultiSelect(
     }
   }
 );
-</script>
 ```
 ## Syntax (arguments)
 ```
@@ -59,8 +75,9 @@ Give the object of settings your multiselect.
   <li><b>onChange</b> : when it changed, this callback function, there is three-parameter in this function.<ol type="i"><li><b>checked</b> : you receive boolean data, selected item checked, or unchecked.</li>
   <li><b>value</b> : you get selected item value.</li>
   <li><b>instance</b> : it's instance variable of mulitiselect, you can access multiselect properties and methods</li></ol></li>
-  <li><b>selectAll</b> : if you give true value, select all options to enable.</li>
-  <li><b>readOnly</b> :  if you give true value, the user can not modify multiselect options.</li></ol>
+  <li><b>selectAll</b> : If your given value is true, then the select-all feature is will enable. It helps one click to select all options</li>
+  <li><b>searchBox</b> : If your given value is true, the search box feature is will enable. It helps to search the option values.</li>
+  <li><b>theme</b> : There are two themes available. They are theme1 and theme2. theme1 is a regular multi-select, theme2 multi-select have directly remove selected value option button.</li></ol>
 <h5>MSFmultiSelect Methods</h5><dl>
   <dt><code>MSFmultiSelect.setValue(sellectedValues)</code></dt>
 <dd>This method used to add selected values, this method needs one argument, that argument value has select option values in an array format.<ul>
@@ -76,16 +93,16 @@ Give the object of settings your multiselect.
 <li><b>code</b> : <code> select.selectAll(true); select.selectAll(false);</code></li></ul></dd>
   <dt><code>MSFmultiSelect.loadSource(options)</code></dt>
   <dd>This method uses to load options in multiselect. This method needs one argument and its need array format.<ul>
-<li><b>formet</b> : <pre>
-<code>
-    var options=[
-        {caption:'optiontext1',value:'optionvalue1',selected:true},
-        {caption:'optiontext2',value:'optionvalue2',selected:false}
-    ];</code></pre></li>
+<li><b>formet</b> : 
+<pre><code>var options = [
+    {caption:'optiontext1', value:'optionvalue1', selected:true},
+    {caption:'optiontext2', value:'optionvalue2', selected:false}
+];</code></pre>
+</li>
 </ul></dd><dt><code>MSFmultiSelect.getSource()</code></dt>
 <dd>This method uses to get current source data, it will return the array format.<ul>
 <li><b>code</b> : <code> console.log(select.getSource());</code></li></ul></dd><dt><code>MSFmultiSelect.reload()</code></dt><dd>This use to recreate the mulitselect.<ul>
 <li><b>code</b> : <code>select.reload();</code></li></ul></dd></dl>
-<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect" >View Documentation (Demo)</a>
 
-<p>Learn more about in <a target="_blank" href="https://minisuperfiles.blogspot.com" >minisuperfiles.blogspot.com</a></p>
+
+Learn more about in [minisuperfiles.blogspot.com](https://minisuperfiles.blogspot.com)
