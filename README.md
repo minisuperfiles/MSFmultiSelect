@@ -4,12 +4,12 @@ MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect libr
 ## Installation
 Use npm to install the latest version.
 ```
-npm install github:minisuperfiles/MSFmultiSelect
+npm i msfmultiselect
 ```
 Alternatively, you can simply embed it in your HTML file.
 ```html
-<script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.js"></script>
-<link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.css" rel="stylesheet"/>
 ```
 ## Using Example
 Add references to MSFmultiSelect’s JavaScript and Stylesheet.
