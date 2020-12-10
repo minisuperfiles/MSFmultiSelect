@@ -374,7 +374,7 @@ class MSFmultiSelect {
     this.logger = elem;
 
     elem.addEventListener('click', function() {
-      if (self.settings.autoHide) { 
+      if (self.settings.autoHide) {
         self.list.classList.toggle('hidden');
       }
       self.logger.classList.toggle('open');
@@ -411,13 +411,17 @@ class MSFmultiSelect {
       selectedLabels.innerHTML = option.innerText;
 
       closeBtn = document.createElement('span');
-      closeBtn.className = 'closeBtn';
+      closeBtn.className = 'closeBtn readOnly';
       closeBtn.innerHTML = '&#10005;';
       closeBtn.dataset.id = option.value;
-      closeBtn.addEventListener('click', function(event) {
-        event.stopPropagation();
-        self.removeValue([event.target.dataset.id]);
-      });
+
+      if (!self.settings.readOnly) {
+        closeBtn.classList.remove('readOnly');
+        closeBtn.addEventListener('click', function(event) {
+          event.stopPropagation();
+          self.removeValue([event.target.dataset.id]);
+        });
+      }
 
       selectedLabels.appendChild(closeBtn);
       logger.appendChild(selectedLabels);

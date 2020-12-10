@@ -56,6 +56,9 @@
   cursor: pointer;
   color: #ff6060;
 }
+.msf_multiselect_container .closeBtn.readOnly {
+  cursor: unset;
+}
 .msf_multiselect_container .hidden {
   display: none !important;
 }
@@ -76,4 +79,4 @@
 }
 .msf_multiselect_container .msf_multiselect.offdropdown {
   position: unset;
-} 
+}
