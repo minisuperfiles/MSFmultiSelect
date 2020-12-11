@@ -6,6 +6,11 @@ Use npm to install the latest version.
 ```
 npm i msfmultiselect
 ```
+Import MSFmultiSelect and its stylesheet.
+```javascript
+import MSFmultiSelect from "msfmultiselect";
+import 'msfmultiselect/msfmultiselect.min.css';
+```
 Alternatively, you can simply embed it in your HTML file.
 ```html
 <script src="https://cdn.jsdelivr.net/gh/minisuperfiles/MSFmultiSelect/msfmultiselect.min.js"></script>
@@ -34,7 +39,7 @@ Select box container element.
 ```
 JavaScript code
 ```javascript
-var select2 = new MSFmultiSelect(
+var select = new MSFmultiSelect(
   document.querySelector('#multiselect'),
   {
     selectAll: true,
@@ -48,20 +53,24 @@ var select2 = new MSFmultiSelect(
 ## Syntax (arguments)
 ```
 new MSFmultiSelect(element)
-new MSFmultiSelect(element,settings)
+new MSFmultiSelect(element, settings)
 
 element = document.getElementById('multiselect')
 settings = {
- width:350,
- height:40,
- className:'myclass',
- onChange:function(checked,value,instance){
-  console.log(checked,value,instance);
- },
- selectAll:true,
- searchBox: true,
- appendTo:'#myselect',
- readOnly:true
+  width: 350,
+  height: 40,
+  className: 'myclass',
+  onChange: function(checked, value, instance) {
+    console.log(checked, value, instance);
+  },
+  selectAll: true,
+  searchBox: true,
+  appendTo: '#myselect',
+  readOnly: true,
+  afterSelectAll: function(checked, values, instance) {
+    console.log(checked, values, instance);
+  },
+  autoHide: false
 }
 ```
 ### element
@@ -72,12 +81,16 @@ Give the object of settings your multiselect.
 <li><b>width</b> : It is control of the mulitiselect width.</li>
   <li><b>height</b> :  It is control of the mulitiselect height.</li>
   <li><b>className</b> : if you need any custom style, give css class name, it will apply to mulitiselect.</li>
-  <li><b>onChange</b> : when it changed, this callback function, there is three-parameter in this function.<ol type="i"><li><b>checked</b> : you receive boolean data, selected item checked, or unchecked.</li>
-  <li><b>value</b> : you get selected item value.</li>
-  <li><b>instance</b> : it's instance variable of mulitiselect, you can access multiselect properties and methods</li></ol></li>
+  <li><b>onChange</b> : When multiselect is changed this callback function will run. In this function, there are three parameters.<ol type="i"><li><b>checked</b> : you receive boolean data, selected item checked, or unchecked.</li>
+  <li><b>value</b> : You get selected item value.</li>
+  <li><b>instance</b> : It's instance variable of mulitiselect, you can access multiselect properties and methods</li></ol></li>
   <li><b>selectAll</b> : If your given value is true, then the select-all feature is will enable. It helps one click to select all options</li>
+  <li><b>afterSelectAll</b> : When users click the select-all feature this callback function will run. In this function, there are three parameters.<ol type="i"><li><b>checked</b> : you receive boolean data, selected item checked, or unchecked.</li>
+  <li><b>values</b> : You get selected item values in array.</li>
+  <li><b>instance</b> : It's instance variable of mulitiselect, you can access multiselect properties and methods</li></ol></li>
   <li><b>searchBox</b> : If your given value is true, the search box feature is will enable. It helps to search the option values.</li>
-  <li><b>theme</b> : There are two themes available. They are theme1 and theme2. theme1 is a regular multi-select, theme2 multi-select have directly remove selected value option button.</li></ol>
+  <li><b>theme</b> : There are two themes available. They are theme1 and theme2. theme1 is a regular multi-select, theme2 multi-select have directly remove selected value option button.</li>
+  <li><b>autoHide</b> : If your given value is false, selectable values always displayed on the screen.</li></ol>
 <h5>MSFmultiSelect Methods</h5><dl>
   <dt><code>MSFmultiSelect.setValue(sellectedValues)</code></dt>
 <dd>This method used to add selected values, this method needs one argument, that argument value has select option values in an array format.<ul>
