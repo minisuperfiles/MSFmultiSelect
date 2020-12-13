@@ -1,81 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Multiselect | MSFmultiSelect | Minisuperfiles</title>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<script src="msfmultiselect.js"></script>
-<link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
-</head>
-<body>
-<h1>Multi Select</h1>
-<h4>Theme 1</h4>
-<div id="myselect">
-  <select id="multiselect" name="others[]" multiple="multiple">
-    <option value="1" selected>HTML</option>
-    <option value="2" selected>CSS</option>
-    <option value="3">MySql</option>
-    <option value="4">XML</option>
-    <option value="5">JSON</option>
-    <option value="6">YAML</option>
-    <option value="7">MongoDB</option>
-    <option value="8">SQLite</option>
-  </select>
-</div>
-<div>
-<h4>Theme 2</h4>
-<div id="myselect2">
-  <select id="multiselect2" name="languages[]" multiple="" >
-    <option value="c">C</option><option value="cpp" selected="">C++</option>
-    <option value="java" selected="">Java</option>
-    <option value="php" selected="">PHP</option>
-    <option value="python">Python</option>
-    <option value="javascript" selected="">JavaScript</option>
-    <option value="typescript">TypeScript</option>
-    <option value="csharp">C#</option>
-  </select>
-</div>
-<h4>Link</h4>
-<a target="_blank" href="https://minisuperfiles.blogspot.com">Get more</a>
-<a target="_blank" href="https://github.com/minisuperfiles/MSFmultiSelect">GitHub</a>
-<a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect">Documentation</a>
-</body>
-<script>
-var select = new MSFmultiSelect(
-  document.querySelector('#multiselect'),
-  {
-    theme: 'theme1',
-    selectAll: true,
-    searchBox: true,
-    width: 250,
-    height: 30,
-    onChange:function(checked, value, instance) {
-      //console.log(checked, value, instance);
-    },
-    //appendTo: '#myselect',
-    //readOnly:true,
-    placeholder: 'languages',
-    //autoHide: false,
-    afterSelectAll:function(checked, values, instance) {
-      //console.log(checked, values, instance);
+  <head>
+    <title>Multiselect | MSFmultiSelect | Minisuperfiles</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" type="text/css" href="msfmultiselect.css"/>
+    <script src="msfmultiselect.js"></script>
+  </head>
+  <body>
+    <h1>Multi Select</h1>
+    <h4>Theme 1</h4>
+    <div id="myselect">
+      <select id="multiselect" name="others[]" multiple="multiple">
+        <option value="1" selected>HTML</option>
+        <option value="2" selected>CSS</option>
+        <option value="3">MySql</option>
+        <option value="4">XML</option>
+        <option value="5">JSON</option>
+        <option value="6">YAML</option>
+        <option value="7">MongoDB</option>
+        <option value="8">SQLite</option>
+      </select>
+    </div>
+    <h4>Theme 2</h4>
+    <select id="multiselect2" name="languages[]" multiple="" >
+      <option value="c">C</option><option value="cpp" selected="">C++</option>
+      <option value="java" selected="">Java</option>
+      <option value="php" selected="">PHP</option>
+      <option value="python">Python</option>
+      <option value="javascript" selected="">JavaScript</option>
+      <option value="typescript">TypeScript</option>
+      <option value="csharp">C#</option>
+    </select>
+    <h4>Link</h4>
+    <a target="_blank" href="https://minisuperfiles.blogspot.com">Get more</a>
+    <a target="_blank" href="https://github.com/minisuperfiles/MSFmultiSelect">GitHub</a>
+    <a target="_blank" href="https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect">Documentation</a>
+  </body>
+  <script>
+  var select = new MSFmultiSelect(
+    document.querySelector('#multiselect'),
+    {
+      theme: 'theme1',
+      selectAll: true,
+      searchBox: true,
+      width: 250,
+      height: 30,
+      onChange:function(checked, value, instance) {
+        //console.log(checked, value, instance);
+      },
+      //appendTo: '#myselect',
+      //readOnly:true,
+      placeholder: 'languages',
+      //autoHide: false,
+      afterSelectAll:function(checked, values, instance) {
+        //console.log(checked, values, instance);
+      }
     }
-  }
-);
-var select2 = new MSFmultiSelect(
-  document.querySelector('#multiselect2'),
-  {
-    theme: 'theme2',
-    selectAll: true,
-    searchBox: true,
-    width: '250px',
-    height: '45px',
-    // readOnly: true,
-    onChange:function(checked, value, instance) {
-      // console.log(checked, value, instance);
-    },
-    //appendTo: '#myselect2',
-    //readOnly:true,
-    //autoHide: false
-  }
-);
-</script>
+  );
+  var select2 = new MSFmultiSelect(
+    document.querySelector('#multiselect2'),
+    {
+      theme: 'theme2',
+      selectAll: true,
+      searchBox: true,
+      width: '250px',
+      height: '45px',
+      // readOnly: true,
+      onChange:function(checked, value, instance) {
+        // console.log(checked, value, instance);
+      },
+      // appendTo: '#myselect',
+      //readOnly:true,
+      //autoHide: false
+    }
+  );
+  </script>
 </html>

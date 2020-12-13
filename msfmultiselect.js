@@ -77,7 +77,12 @@ class MSFmultiSelect {
     this._getCommonElems(div);
 
     this.container = div;
-    addTarget.appendChild(div);
+    if (addTarget.contains(this.select)) {
+      addTarget.insertBefore(div, this.select);
+    } else {
+      addTarget.appendChild(div);
+    }
+
     // add event
     document.addEventListener('click', function(event) {
       var theme2Specific = self.settings['theme'] === 'theme1' ? false : event.target.className === 'closeBtn';
