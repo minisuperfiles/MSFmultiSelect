@@ -130,7 +130,7 @@ class MSFmultiSelect {
     if (this.searchBox.value) { this.searchBox.value = ''; }
     this.searchBox.focus();
   }
-  setValue(selected = []) {
+  setValue(selected = [], trigger = false) {
     if (!selected.length) return;
 
     var selectChildrenLen = this.select.children.length,
@@ -152,13 +152,19 @@ class MSFmultiSelect {
         listChild.children[0].checked = true;
         listChild.classList.add('active');
         this.data[i] = true;
+        //onchange trigger
+        if (trigger) {
+          if (typeof this.settings.onChange == 'function') {
+            this.settings.onChange(true, selectChild.value, this);
+          }
+        }
         break;
       }
     }
     this.log();
     this.searchValClear();
   }
-  removeValue(selected = []) {
+  removeValue(selected = [], trigger = false) {
     if (!selected.length) return;
 
     var selectChildrenLen = this.select.children.length,
@@ -178,6 +184,12 @@ class MSFmultiSelect {
         listChild.children[0].checked = false;
         listChild.classList.remove('active');
         this.data[i] = false;
+        //onchange trigger
+        if (trigger) {
+          if (typeof this.settings.onChange == 'function') {
+            this.settings.onChange(false, selectChild.value, this);
+          }
+        }
         break;
       }
     }
