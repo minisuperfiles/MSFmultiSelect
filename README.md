@@ -93,7 +93,7 @@ Give the object of settings your multiselect.
   <li><b>autoHide</b> : If your given value is false, selectable values always displayed on the screen.</li></ol>
 <h5>MSFmultiSelect Methods</h5><dl>
   <dt><code>MSFmultiSelect.setValue(sellectedValues, changeTrigger)</code></dt>
-<dd>This method is used to add selected values, this method needs two arguments, sellectedValues argument value has select option values in an array format. If you changeTrigger argument value is true then it triggers to onChange event<ul>
+<dd>This method is used to add selected values, this method needs two arguments, sellectedValues argument value has select option values in an array format. If you changeTrigger argument value is true then it triggers to onChange event.<ul>
 <li><b>code</b> : <code>select.setValue(['4','8']); //give select option values in array</code></li></ul></dd>
 <dt><code>MSFmultiSelect.removeValue(removeSellectedValues, changeTrigger)</code></dt>
   <dd>This method is used to remove selected values, this method needs two arguments, removeSellectedValues argument value has select option values in an array format. If you changeTrigger argument value is true then it triggers to onChange event.<ul>
