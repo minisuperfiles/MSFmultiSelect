@@ -1,4 +1,4 @@
-/* MSFmultiSelect v2.0
+/* MSFmultiSelect v2.1
  * Copyright (c) 2020 Mini Super Files | https://github.com/minisuperfiles/MSFmultiSelect/blob/master/LICENSE
  * https://github.com/minisuperfiles/MSFmultiSelect
  * https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect
