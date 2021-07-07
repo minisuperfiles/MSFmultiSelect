@@ -205,7 +205,7 @@ class MSFmultiSelect {
 
     if (!selectedSearchResult.length) {
       this._handleSearchBox();
-      this._showAllOptions();
+      //this._showAllOptions();
     }
   }
   log() {
@@ -436,7 +436,7 @@ class MSFmultiSelect {
         closeBtn.classList.remove('readOnly');
         closeBtn.addEventListener('click', function(event) {
           event.stopPropagation();
-          self.removeValue([event.target.dataset.id]);
+          self.removeValue([event.target.dataset.id], true);
         });
       }
 
