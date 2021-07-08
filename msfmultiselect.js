@@ -127,7 +127,10 @@ class MSFmultiSelect {
   }
   _handleSearchBox() {
     if (!this.settings.searchBox) return;
-    if (this.searchBox.value) { this.searchBox.value = ''; }
+    if (this.searchBox.value) {
+      this.searchBox.value = '';
+      this._showAllOptions();
+    }
     this.searchBox.focus();
   }
   setValue(selected = [], trigger = false) {
