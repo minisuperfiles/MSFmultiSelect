@@ -1,4 +1,4 @@
-/* MSFmultiSelect v2.2
+/* MSFmultiSelect v2.3
  * Copyright (c) 2020 Mini Super Files | https://github.com/minisuperfiles/MSFmultiSelect/blob/master/LICENSE
  * https://github.com/minisuperfiles/MSFmultiSelect
  * https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect
@@ -103,22 +103,25 @@ class MSFmultiSelect {
     var options = self.list.querySelectorAll('li:not([class*=ignore])');
 
     self._showAllOptions();
+    self.toggleSelectAllBtn(false);
     if (searchVal.length < 1) return;
 
     var i, optinVal, option, optionsLen = options.length;
-    var allSelected = true;
+    var allSelected = true, searchResCount = 0;
     for (i = 0; i < optionsLen; i++) {
       option = options[i];
       optinVal = option.innerText.toLocaleLowerCase();
 
-      if (optinVal.indexOf(searchVal) !== 0) {
+      if (optinVal.indexOf(searchVal) == -1) {
         option.parentElement.classList.add('hidden');
         continue;
       }
-      if (allSelected) {
+      if (! option.firstChild.checked) {
         allSelected = option.firstChild.checked;
       }
+      searchResCount++;
     }
+    allSelected = (searchResCount == 0) ? false : allSelected;
     self.toggleSelectAllBtn(allSelected);
   }
   toggleSelectAllBtn(allSelected) {
