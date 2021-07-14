@@ -124,9 +124,20 @@ class MSFmultiSelect {
     allSelected = (searchResCount == 0) ? false : allSelected;
     self.toggleSelectAllBtn(allSelected);
   }
-  toggleSelectAllBtn(allSelected) {
-    if (!this.settings.searchBox) { return; }
-    this.list.querySelector('li.ignore input[type="checkbox"]').checked = allSelected;
+  toggleSelectAllBtn(allSelected = null) {
+    if (!this.settings.selectAll) { return; }
+    var showList, showCheckedList, selectAllInput = this.list.querySelector('li.ignore input[type="checkbox"]');
+    if (allSelected == null) {
+      showList = this.list.querySelectorAll('label:not([class*=hidden]):not([class*=ignore]) input[type="checkbox"][value]'); 
+      showCheckedList = this.list.querySelectorAll('label:not([class*=hidden]):not([class*=ignore]) input[type="checkbox"][value]:checked');
+      if(showList.length == showCheckedList.length) {
+        selectAllInput.checked = true;
+      } else {
+        selectAllInput.checked = false;
+      }
+    } else {
+      selectAllInput.checked = allSelected;
+    }
   }
   _handleSearchBox() {
     if (!this.settings.searchBox) return;
@@ -169,6 +180,7 @@ class MSFmultiSelect {
     }
     this.log();
     this.searchValClear();
+    this.toggleSelectAllBtn();
   }
   removeValue(selected = [], trigger = false) {
     if (!selected.length) return;
@@ -201,6 +213,7 @@ class MSFmultiSelect {
     }
     this.log();
     this.searchValClear();
+    this.toggleSelectAllBtn();
   }
   searchValClear() {
     if (!this.settings.searchBox) return;
