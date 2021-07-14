@@ -1,6 +1,6 @@
 # MSFmultiSelect
 MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.
-### [Documentation (Demo)](https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect) | [Try it (JSFiddle)](https://jsfiddle.net/minisuperfiles/r0L2yusd/) | [Download](https://github.com/minisuperfiles/MSFmultiSelect/archive/2.3.zip)
+### [Documentation (Demo)](https://minisuperfiles.blogspot.com/p/documentation.html?project=msfmultiselect) | [Try it (JSFiddle)](https://jsfiddle.net/minisuperfiles/r0L2yusd/) | [Download](https://github.com/minisuperfiles/MSFmultiSelect/archive/2.4.zip)
 ## Installation
 Use npm to install the latest version.
 ```
