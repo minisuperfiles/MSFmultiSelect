@@ -414,6 +414,7 @@ class MSFmultiSelect {
       }
       self.logger.classList.toggle('open');
       self._handleSearchBox();
+      self.toggleSelectAllBtn();
     });
   }
   _ThemeOneSpecific_log() {
