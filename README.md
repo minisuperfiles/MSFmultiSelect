@@ -19,7 +19,7 @@ import MSFmultiSelect from "msfmultiselect";
 import "msfmultiselect/msfmultiselect.min.css";
 ```
 
-Import MSFmultiSelect in angular and Typescript.
+<!--Import MSFmultiSelect in angular and Typescript.
 
 ```typescript
 import { MSFmultiSelect } from "msfmultiselect";
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     console.log(checked, value, instance);
   }
 }
-```
+```-->
 
 Alternatively, you can simply embed it in your HTML file.
 
