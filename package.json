@@ -1,6 +1,6 @@
 {
   "name": "msfmultiselect",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "MSFmultiSelect (multiselect) is a pure JavaScript user-friendly multiselect library, don't need jQuery. It's very easy to use for developers and fast.",
   "main": "msfmultiselect.min.js",
   "scripts": {
@@ -17,7 +17,9 @@
     "pure-javascript",
     "minisuperfiles",
     "multiselect-with-search",
-    "msfmultiselect"
+    "msfmultiselect",
+    "angluar-multiselect",
+    "typescript-multiselect"
   ],
   "author": "Mini super files",
   "license": "MIT",
